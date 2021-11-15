@@ -7,11 +7,10 @@ var moment = require("moment")
 
 
 //var con = mysql.createConnection({ host: "localhost", user: "root", password: "", database: 'star2' })
-//var con = mysql.createConnection({ host: "localhost", user: "root", password: "S0ft@secure605", database: 'star' })
-var con = mysql.createConnection({ host: "localhost", user: "root", password: "root", database: 'star2', 
-socketPath:"/Applications/MAMP/tmp/mysql/mysql.sock", port:"8889"
-})
-
+    //var con = mysql.createConnection({ host: "localhost", user: "root", password: "S0ft@secure605", database: 'star' })
+    var con = mysql.createConnection({ host: "localhost", user: "root", password: "root", database: 'star2', 
+    socketPath:"/Applications/MAMP/tmp/mysql/mysql.sock", port:"8889"
+    })
 con.connect((err) => {
     if (err) {
         console.log("Error in establishing Connection")
@@ -46,7 +45,7 @@ router.post('/api/user', (req, res) => {
                 res.status(200).json({ "user_id": data[0].id, "message": "Success" })
             }
         })
-    } catch (err) { }
+    } catch (err) {}
 })
 
 
@@ -172,7 +171,7 @@ router.get('/api/reports/:user_id', (req, res) => {
             } else if (result == null || result == "" || result == undefined) {
                 console.log("DATA INSIDE REPORT")
                 var user = req.params.user_id
-                // res.status(200).json()
+                    // res.status(200).json()
                 var currentDateObj = new Date();
                 currentDateObj.setDate(currentDateObj.getDate() - (currentDateObj.getDay() + 6) % 7);
                 var curDate = moment(new Date(currentDateObj)).format("MM-DD-YYYY HH:mm:ss")
@@ -240,9 +239,9 @@ router.get('/api/reports/:user_id', (req, res) => {
                                         if (err) {
                                             console.log(err)
                                         } else {
-                                            async.eachSeries(result, function (value, cbk) {
+                                            async.eachSeries(result, function(value, cbk) {
 
-                                                con.query('select * from star_tasks where star_id = ? ', [value.id], (err, data) => {
+                                                con.query('select * from star_tasks where star_id = ? ORDER BY task_date', [value.id], (err, data) => {
                                                     var resJson = {
                                                         "id": value.id,
                                                         "weekStart": value.week_start,
@@ -255,7 +254,7 @@ router.get('/api/reports/:user_id', (req, res) => {
 
                                                 })
 
-                                            }, function (err) {
+                                            }, function(err) {
                                                 if (err) {
                                                     console.log(err)
                                                     cb()
@@ -275,9 +274,9 @@ router.get('/api/reports/:user_id', (req, res) => {
                                 if (err) {
                                     console.log(err)
                                 } else {
-                                    async.eachSeries(result, function (value, cbk) {
+                                    async.eachSeries(result, function(value, cbk) {
 
-                                        con.query('select * from star_tasks where star_id = ? ', [value.id], (err, data) => {
+                                        con.query('select * from star_tasks where star_id = ? ORDER BY task_date ', [value.id], (err, data) => {
                                             var resJson = {
                                                 "id": value.id,
                                                 "weekStart": value.week_start,
@@ -290,7 +289,7 @@ router.get('/api/reports/:user_id', (req, res) => {
 
                                         })
 
-                                    }, function (err) {
+                                    }, function(err) {
                                         if (err) {
                                             console.log(err)
                                             cb()
@@ -350,7 +349,7 @@ router.post('/api/projectList', (req, res) => {
             res.send(err)
         } else {
             var projectArray = [];
-            async.eachSeries(data, function (value, cbk) {
+            async.eachSeries(data, function(value, cbk) {
                 proj = value.project_code
                 con.query('select module_code from star_project_modules where project_code =?', [proj], (err, result) => {
                     var details = {}
@@ -362,7 +361,7 @@ router.post('/api/projectList', (req, res) => {
 
                 })
 
-            }, function (err) {
+            }, function(err) {
                 if (err) {
                     console.log(err)
                     cb()
@@ -433,7 +432,7 @@ router.post('/api/resetPwd', (req, res) => {
 
 /**Login Api **** */
 
-router.post('/api/login', function (req, res) {
+router.post('/api/login', function(req, res) {
     var username = req.body.username;
     var email = req.body.username;
     var pass = req.body.password
@@ -441,13 +440,13 @@ router.post('/api/login', function (req, res) {
         if (username || email) {
             con.query('SELECT * FROM star_users WHERE User_Name = ? OR Email = ?', [
                 username, email
-            ], function (error, results, fields) {
+            ], function(error, results, fields) {
                 if (error) {
                     res.status(401).send({ "message": "User Not found" })
-                } else if (results == null || results == undefined || results == "") {
-                    res.json({ "message": "User Not found" })
+                } else if (results == null || results == undefined) {
+                    res.json({ "message": "No data available" })
                 } else {
-                    console.log("username",username)
+
                     if (passwordHash.verify(pass, results[0].Password)) {
 
                         res.status(200).json({ "user_id": results[0].User_Name, role_id: results[0].Role_id, "message": "Loggedin Successfully" })
@@ -457,8 +456,8 @@ router.post('/api/login', function (req, res) {
                 }
 
             });
-        }else{
-            res.json({ "message": "Please Enter Username and Password" })
+        } else {
+            res.status(401).json({ "message": "Please enter Username and Password" })
         }
     } catch (err) {
         res.status(500).send({ "message": "Something went wrong" })
@@ -509,7 +508,7 @@ router.post('/api/getNounce', (req, res) => {
     }
     console.log("DATA", options.uri)
 
-    request(options, function (err, response, body) {
+    request(options, function(err, response, body) {
         console.log("DATA URL", response.body)
         if (response.statusCode == 200 && response.body != "" && response.body != undefined && response.body != null) { // if(!err){
             var response = JSON.parse(response.body)

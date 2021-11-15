@@ -7,14 +7,14 @@ import {selectViewMode, selectTasksStatus, setTaskEditMode, setTabMode} from './
 import ReactDataGrid, {SelectColumn} from "react-data-grid";
 import AddTask from './addTask'
 import TaskEdit from './taskEdit'
-import { exportToXlsx } from '../util/exportUtils';
+import { exportToXlsxtoUser } from '../util/exportUtils';
 
 // import {CellActionsFormatter, ImageFormatter} from '/react-data-grid/components/Formatters';
 
 // const CellActionsFormatter = require('../components/CellFormatter.js')
 const defaultColumnProperties = {
   resizable: true,
-  //width: 120
+  width: "20%"
 };
 
 function ExportButton({onExport, len, children}) {
@@ -97,7 +97,8 @@ const TaskList = ({starId}) => { // console.log('In TaskList component[' + starI
     SelectColumn,
     {
       key: 'task_desc',
-      name: 'Task'
+      name: 'Task',
+      textAlign:'left'
     },
     {
       key: 'task_type',
@@ -121,17 +122,9 @@ const TaskList = ({starId}) => { // console.log('In TaskList component[' + starI
 
   const allColumns = [
     {
-      key: 'id',
-      name: 'S.no.'
-    },
-    {
       key: 'project',
       name: 'Project',
       sortable: true
-    },
-    {
-      key: 'user_id',
-      name: 'Employee'
     },
     {
       key: 'task_type',
@@ -186,7 +179,6 @@ const TaskList = ({starId}) => { // console.log('In TaskList component[' + starI
           rows={rows}
           rowKeyGetter={rowKeyGetter}
           rowsCount={ROW_COUNT}
-          minHeight={500}
           defaultColumnOptions={
             {
               sortable: true,
@@ -195,6 +187,7 @@ const TaskList = ({starId}) => { // console.log('In TaskList component[' + starI
           }
           selectedRows={selectedRows}
           onSelectedRowsChange={selectTask}
+          //style={{textAlign:'left',borderColor:'lightblue',borderRadius:'1rem',borderWidth:3}}
 
           onColumnResize={
             (idx, width) => console.log(`Column ${idx} has been resized to ${width}`)
@@ -209,7 +202,7 @@ const TaskList = ({starId}) => { // console.log('In TaskList component[' + starI
     { viewMode === vMode || star.status !== "Open" ?
       <ExportButton len={ rows.length }
         onExport={
-          () => exportToXlsx(gridElement, 'Reports.xlsx')
+          () => exportToXlsxtoUser(gridElement, 'Reports.xlsx')
         }>
         Download
       </ExportButton> : <></>

@@ -33,6 +33,19 @@ export async function exportToXlsx( gridElement , fileName ) {
   writeFile(wb, fileName);
 }
 
+export async function exportToXlsxtoUser( gridElement , fileName ) {
+  const [{ utils, writeFile }, { head, body, foot }] = await Promise.all([
+    import('xlsx'),
+    getGridContent(gridElement)
+  ]);
+  const wb = utils.book_new();
+
+  const ws = utils.aoa_to_sheet([...head, ...body, ...foot]);
+  utils.book_append_sheet(wb, ws, "sheet1");
+
+  writeFile(wb, fileName);
+}
+
 export async function exportToPdf(
   gridElement,
   fileName

@@ -68,20 +68,24 @@ const TaskEdit = ({starId, taskId, weekStart}) => {
 
   const handleUpdate = (e) => {
     console.log("Updating task, taskid " + taskId)
-    const obj = {
-      id: taskId,
-      project: project,
-      module: module,
-      sprint: sprint,
-      task_desc: taskdesc,
-      taskType: tasktype,
-      taskNotes: tasknotes,
-      hours: hours,
-      task_date: date,
-      starId: starId
+    if (hours==='' || date === '' || taskdesc === '') {
+      alert('Please enter the input fields')
+    }else{
+      const obj = {
+        id: taskId,
+        project: project,
+        module: module,
+        sprint: sprint,
+        task_desc: taskdesc,
+        taskType: tasktype,
+        taskNotes: tasknotes,
+        hours: hours,
+        task_date: date,
+        starId: starId
+      }
+      dispatch(updateTask(obj))
+      dispatch(setTabMode({starId: starId, mode: 'view'}));
     }
-    dispatch(updateTask(obj))
-    dispatch(setTabMode({starId: starId, mode: 'view'}));
     e.preventDefault();
     
   }

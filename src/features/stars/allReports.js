@@ -5,7 +5,7 @@ import ReactDataGrid from "react-data-grid";
 import {useDispatch, useSelector} from 'react-redux';
 import {client} from '../../api/client';
 import {getProjectData, selectProjects} from '../tasks/tasksSlice';
-import {exportToCsv, exportToXlsx} from '../util/exportUtils';
+import {exportToXlsx} from '../util/exportUtils';
 
 const defaultColumnProperties = {
   resizable: true,
@@ -15,6 +15,10 @@ const dateformat = (date) => {
   var d = new Date(date)
   return d.toISOString().split('T')[0]
 }
+
+const live="https://softforceapps.com:3000"
+const local="http://localhost:8080"
+const url=live
 
 function getComparator(sortColumn) {
   switch (sortColumn) {
@@ -168,7 +172,7 @@ const AllReports = () => {
     })
     // const selectedProjects=[...e.target.projects.selectedOptions].map(o => o.value)
     // console.log(selectedProjects)
-    const response = await client.post("https://softforceapps.com:3000/api/adminReport", {
+    const response = await client.post(url+"/api/adminReport", {
       startDate: start,
       toDate: end
     })

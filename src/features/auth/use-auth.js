@@ -1,6 +1,11 @@
 import React, {useState, useContext, createContext} from "react";
 import {client} from '../../api/client'
 
+const live="https://softforceapps.com:3000"
+const local="http://localhost:8080"
+const lan="http://10.0.1.15:8080"
+const url=live
+
 // Provider hook that creates auth object and handles state
 function useProvideAuth() {
   const [user, setUser] = useState(null);
@@ -10,8 +15,7 @@ function useProvideAuth() {
   // ... to save the user to state.
   const signin = async (userName, password) => {
     try {
-      let url = '/api/login';
-      const response = await client.post("https://softforceapps.com:3000/api/login", {
+      const response = await client.post(url+"/api/login", {
         username: userName,
         password: password
       })

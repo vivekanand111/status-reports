@@ -19,7 +19,7 @@ const AddTask = ({starId, weekStart}) => {
   const [taskdesc, setTaskDesc] = useState('')
   const [tasktype, setTaskType] = useState('')
   const [tasknotes, setTaskNotes] = useState('')
-  const [hours, setHours] = useState()
+  const [hours, setHours] = useState('')
   const [date, setDate] = useState()
   const divRef = useRef(null);
 
@@ -44,7 +44,7 @@ const AddTask = ({starId, weekStart}) => {
   const taskTypes = useSelector(state => selectTaskTypes(state))
 
   const handle1 = (e) => {
-    if (project == '' || project == -1 || hours==undefined || date == undefined || tasktype == '' || tasktype == '-1' || taskdesc == '') {
+    if (project === '' || hours==='' || date === undefined || date === '' || tasktype === '' || taskdesc === '') {
       alert('Please enter all the input fields')
     } else {
       console.log("POST operation " + starId)
@@ -83,7 +83,7 @@ const AddTask = ({starId, weekStart}) => {
             <option value="eztvel">eZTravel</option>
             <option value="cyberior">Cyberior</option>
             <option value="homecare">HomeCare</option> */}
-            <option value="-1">--</option>
+            <option value="">--</option>
             {
             projects.map((i) => {
               return <option> {i}</option>
@@ -140,7 +140,7 @@ const AddTask = ({starId, weekStart}) => {
                <option value="custcreate">Customer Creation</option>
                <option value="custload">Customer Upload</option>
                <option value="vendorregister">Vendor Registration</option> */}
-            <option value="-1">--</option>
+            <option value="">--</option>
             {
             taskTypes.map((i) => {
               return <option> {i}</option>

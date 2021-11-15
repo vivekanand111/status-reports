@@ -10,6 +10,11 @@ const initialState = {
   taskType:[]
 }
 
+const live="https://softforceapps.com:3000"
+const local="http://localhost:8080"
+const lan="http://10.0.1.15:8080"
+const url=live
+
 export const initViewModes = createAsyncThunk('tasks/initViewModes', async (starIds) => {
   const viewModes = {}
   console.log('Initializeing modes')
@@ -19,13 +24,13 @@ export const initViewModes = createAsyncThunk('tasks/initViewModes', async (star
   return viewModes
 })
 export const getProjectData = createAsyncThunk('tasks/getProjectData',async()  => {
-  const response = await client.post('https://softforceapps.com:3000/api/projectList',{})
+  const response = await client.post(url+'/api/projectList',{})
   console.log(response)
   return response
 })
 
 export const getTaskType = createAsyncThunk('tasks/getTaskType',async()  => {
-  const response = await client.get('https://softforceapps.com:3000/api/commonCodes')
+  const response = await client.get(url+'/api/commonCodes')
   console.log(response)
   var res=[]
   response.map(i=>{

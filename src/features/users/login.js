@@ -1,4 +1,5 @@
-import React, {useState, useContext, createContext} from 'react'
+import React, {useState, useContext, createContext, useEffect} from 'react'
+import { useDispatch } from 'react-redux';
 import {useHistory, useLocation} from 'react-router-dom';
 import {useAuth} from '../auth/use-auth'
 
@@ -17,6 +18,12 @@ export default function Login() {
     }; */
     document.body.classList.add('Login');
     document.body.classList.remove('Dashboard')
+
+    const dispatch = useDispatch()
+
+    useEffect(()=>{
+        dispatch({type:'EMPTY_STORE'})
+    })
 
     let signin = (e) => {
         const userName=e.target.Username.value
