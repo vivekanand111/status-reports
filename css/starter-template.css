@@ -1,0 +1,197 @@
+body {
+  padding:1rem 0px;
+  font-family: 'Poppins', sans-serif;
+  font-size:14px;
+  color:#333;
+}
+.starter-template {
+  padding: 3rem 1.5rem;
+  text-align: center;
+}
+.pad-0{
+	padding:0px;
+}
+.marg-0{
+	margin-bottom:0px;
+}
+.table-bg{ background:#fff;}
+.card-body.cardbody{padding: 15px 15px;}
+.cardbody{padding: 10px 15px 20px 15px;}
+.fullwidth{width:100%;}
+.btn.primary-btn{
+	border-radius: 2px;
+    padding: 10px 0px;
+    background: orange;
+	color:#fff;
+    border: solid 1px orange;
+	font-size: 14px;
+    font-weight: 500 !important;
+}
+.btn.save-btn{
+    border-radius: 2px;
+    padding: 10px 0px;
+    background: #5cb85c;
+    border: solid 1px #5cb85c;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500 !important;
+}
+ .btn.submit-btn{
+    border-radius: 2px;
+    padding: 10px 0px;
+    background: #5bc0de;
+    border: solid 1px #5bc0de;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500 !important;
+}
+#main {
+  margin: 0px 0;
+}
+
+#main #faq .card {
+  margin-bottom: 2px;
+  border: 0;
+}
+
+#main #faq .card .card-header {
+  border: 0;
+  -webkit-box-shadow: 0 0 20px 0 rgba(213, 213, 213, 0.5);
+          box-shadow: 0 0 20px 0 rgba(213, 213, 213, 0.5);
+  border-radius: 0px;
+  padding: 0;
+}
+.thbody{ background:#adb5bd}
+.table td, .table th {
+    padding: .50rem;
+}
+.table thead th {
+  font-weight: normal;
+}	
+#main #faq .card .card-header .btn-header-link {
+  color: #fff;
+  display: block;
+  text-align: left;
+  background: #0062cc;
+    color: #fff;
+  padding:15px 20px;
+}
+
+#main #faq .card .card-header .btn-header-link:after {
+  content: "\f107";
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
+  float: right;
+}
+
+#main #faq .card .card-header .btn-header-link.collapsed {
+  background: #adb5bd;
+  color: #fff;
+  border-radius: 0px;
+}
+
+#main #faq .card .card-header .btn-header-link.collapsed:after {
+  content: "\f106";
+}
+
+#main #faq .card .collapsing {
+  background: #f6f6f6;
+  line-height: 30px;
+}
+
+#main #faq .card .collapse {
+  border: 0;
+}
+
+#main #faq .card .collapse.show {
+  background: #f6f6f6;
+  line-height: 30px;
+  color: #222;
+}
+.btn.padbtn{padding: 10px 40px;}
+.modal-footer{    border-top: 0px solid #dee2e6;}
+.modal-content{border-radius: 0; }
+.modal-header{border-bottom:0 }
+.batepic{
+    border: 1px solid #ced4da;
+    padding: 0px !important;
+    margin-bottom: 0px !important;
+}
+.radius{border-radius: 0px !important;}
+.m-b-30{ margin-bottom:30px;}
+.modaltitle h4{
+	padding: 16px 0px 20px 0px;
+    font-size: 16px;
+    text-align: center;
+    background: #f4f4f4;
+    color: #000;
+}
+.form-control.inputsbr{
+	border-radius: .25rem;
+ padding: .375rem .75rem;
+	border: 1px solid #ced4da !important;
+     }
+.cls-colse{
+    position: absolute;
+    right: 0;
+    font-weight: 300;
+    background: red!important;
+    color: #fff!important;
+    padding: 2px 6px!important;
+    opacity: 1;
+	text-shadow: 0 0px 0 #fff;
+}
+.modal.show .modal-dialog{    margin-top: 5%;}
+/*
+*
+* ==========================================
+* CUSTOM UTIL CLASSES
+* ==========================================
+*
+*/
+.datepicker td, .datepicker th {
+    width: 2.5rem;
+    height: 2.5rem;
+    font-size: 0.85rem;
+}
+
+.datepicker {
+    margin-bottom: 3rem;
+}
+.input-group {
+    border-radius: 30rem;
+}
+
+input.form-control {
+    border-radius: 30rem 0 0 30rem;
+    border: none;
+}
+
+input.form-control:focus {
+    box-shadow: none;
+}
+
+input.form-control::placeholder {
+    font-style: italic;
+}
+
+.input-group-text {
+    border-radius: 0 30rem 30rem 0;
+    border: none;
+}
+
+.datepicker-dropdown {
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+@media only screen and (max-width: 767px){
+	.btn.primary-btn{
+		font-size:12px;
+	}
+	.btn.save-btn{
+		font-size:12px;
+	}
+	.btn.submit-btn{
+		font-size:12px;
+	}
+}
