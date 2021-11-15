@@ -1,4 +1,4 @@
-Live Demo link (https://vivekanand111.github.io/status-reports/). 
+Live Demo link https://vivekanand111.github.io/status-reports/ 
 
 # Getting Started with Create React App
 
